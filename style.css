@@ -1,0 +1,9 @@
+body{
+    /* Não é 100 pra n ter barra de rolagem */
+    height: 95vh;
+    width: 95vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
