@@ -14,9 +14,10 @@ snake[0] = {
     y: 8 * box
 }
 
-function criarBG(){
-    /* Criar background */
+let direction = "right";
 
+/* Criar background */
+function criarBG(){
     /* Trabalha com o estilo do nosso contexto */
     context.fillStyle = "lightgreen";
 
@@ -33,7 +34,36 @@ function createSnake(){
     }
 }
 
-criarBG();
-createSnake();
+function iniciarJogo(){
+    criarBG();
+    createSnake();
+
+    /* Posição de ponto de partida */
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    /* 
+    Acrescenta um quadrado a mais na direção 
+    Plano cartesiano => right +, left -.
+    */
+    if(direction == "right") snakeX += box;
+    if(direction == "left") snakeX -= box;
+    if(direction == "up") snakeY -= box;
+    if(direction == "down") snakeY += box;
+
+    snake.pop();
+
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    }
+
+    snake.unshift(newHead);
+}
+
+
+/* A cada 100 milisegundos o jogo é renovado */
+let jogo = setInterval(iniciarJogo, 100);
 
 /* Cobra é um array de coordenadas. */
+/* unshift => adiciona um ou mais ele no início de um array e retorna length atualizado */
