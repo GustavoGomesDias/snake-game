@@ -16,6 +16,11 @@ snake[0] = {
 
 let direction = "right";
 
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
+
 /* Criar background */
 function criarBG(){
     /* Trabalha com o estilo do nosso contexto */
@@ -32,6 +37,11 @@ function createSnake(){
         /* Aqui ela vai ter o tamanho de um quadradinho e vai ander por x e y, com relação a iteração. Ou seja, i igual a 1, a cobra vai tá em x = 1 e y = 1*/
         context. fillRect(snake[i].x, snake[i].y, box, box);
     }
+}
+
+function drawFood(){
+    context.fillStyle = "red";
+    context.fillRect(food.x, food.y, box, box);
 }
 
 document.addEventListener('keydown', update);
@@ -55,6 +65,7 @@ function iniciarJogo(){
 
     criarBG();
     createSnake();
+    drawFood();
 
     /* Posição de ponto de partida */
     let snakeX = snake[0].x;
@@ -69,7 +80,12 @@ function iniciarJogo(){
     if(direction == "up") snakeY -= box;
     if(direction == "down") snakeY += box;
 
-    snake.pop();
+    if(snakeX != food.x || snakeY != food.y){
+        snake.pop();
+    }else{
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
 
     let newHead = {
         x: snakeX,
