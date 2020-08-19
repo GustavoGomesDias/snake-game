@@ -26,7 +26,10 @@ function criarBG(){
     /* Trabalha com o estilo do nosso contexto */
     context.fillStyle = "lightgreen";
 
-    /* Desenha onde acontece o jogo. Trabalaho com 4 parâmetros (x, y, altura e largura. Vaiter o tamanho de 16 quadradinhos de 32px) */
+    /*
+    Desenha onde acontece o jogo. Trabalaho com 4 parâmetros (x, y, altura e largura). 
+    Vater o tamanho de 16 quadradinhos de 32px)
+    */
     context.fillRect(0, 0, 16 * box, 16 * box);
 }
 
@@ -34,7 +37,7 @@ function createSnake(){
     for(i = 0; i < snake.length; i++){
         context.fillStyle = "green";
 
-        /* Aqui ela vai ter o tamanho de um quadradinho e vai ander por x e y, com relação a iteração. Ou seja, i igual a 1, a cobra vai tá em x = 1 e y = 1*/
+        /* i igual a 1, a cobra vai tá em x = 1 e y = 1*/
         context. fillRect(snake[i].x, snake[i].y, box, box);
     }
 }
