@@ -34,7 +34,25 @@ function createSnake(){
     }
 }
 
+document.addEventListener('keydown', update);
+
+function update (event){
+    if(event.keyCode == 37 && direction != "right") direction = "left";
+    if(event.keyCode == 38 && direction != "down") direction = "up";
+    if(event.keyCode == 39 && direction != "left") direction = "right";
+    if(event.keyCode == 40 && direction != "up") direction = "down";
+}
+
 function iniciarJogo(){
+
+    /* Permitir que atravesse pro outro lado */
+    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+    if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+
+
+
     criarBG();
     createSnake();
 
@@ -65,5 +83,6 @@ function iniciarJogo(){
 /* A cada 100 milisegundos o jogo é renovado */
 let jogo = setInterval(iniciarJogo, 100);
 
+/* Pegar a tecla e movimentara cobrinha */
 /* Cobra é um array de coordenadas. */
 /* unshift => adiciona um ou mais ele no início de um array e retorna length atualizado */
